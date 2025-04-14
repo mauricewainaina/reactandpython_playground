@@ -1,0 +1,19 @@
+name: nginx-installation
+
+on: push
+
+jobs:
+    install-nginx:
+        runs-on: ubuntu:latest
+        steps:
+        - name: update packages on the ubuntu vm
+          run: apt-get update -y
+          
+        - name: install nginx 
+          run: apt-get install nginx -y
+          
+        - name: enable and start nginx service
+          run: sudo systemctl enable nginx && sudo systemctl start nginx
+          
+        - name: check the status of nginx server
+          run: sudo systemctl status nginx  
