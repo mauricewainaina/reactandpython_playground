@@ -20,7 +20,7 @@ jobs:
 
       - name: Check Nginx status
         run: |
-          sudo systemctl status nginx --no-pager
+          sudo systemctl status nginx
 
       - name: Verify Nginx is running
         run: curl -I http://localhost
