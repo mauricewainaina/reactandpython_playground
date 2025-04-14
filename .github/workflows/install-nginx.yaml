@@ -18,9 +18,14 @@ jobs:
           sudo apt update
           sudo apt install -y nginx
 
-      - name: Check Nginx status
+      - name: enable and start nginx
         run: |
-          sudo systemctl status nginx
+          sudo systemctl enable nginx
+          sudo systemctl start nginx
+
+      - name: check status of nginx
+        run: |
+          sudo systemctl status nginx    
 
       - name: Verify Nginx is running
         run: curl -I http://localhost
