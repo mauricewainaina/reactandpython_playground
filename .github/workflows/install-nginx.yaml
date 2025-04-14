@@ -1,19 +1,26 @@
-name: nginx-installation
+name: Install Nginx on Ubuntu
 
-on: push
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 jobs:
-    install-nginx:
-        runs-on: ubuntu:22.04
-        steps:
-        - name: update packages on the ubuntu vm
-          run: apt-get update -y
-          
-        - name: install nginx 
-          run: apt-get install nginx -y
-          
-        - name: enable and start nginx service
-          run: sudo systemctl enable nginx && sudo systemctl start nginx
-          
-        - name: check the status of nginx server
-          run: sudo systemctl status nginx  
+  install-nginx:
+    runs-on: ubuntu-latest
+
+    steps:
+
+
+      - name: Update apt and install Nginx
+        run: |
+          sudo apt update
+          sudo apt install -y nginx
+
+      - name: Check Nginx status
+        run: |
+          sudo systemctl status nginx --no-pager
+
+      - name: Verify Nginx is running
+        run: curl -I http://localhost
