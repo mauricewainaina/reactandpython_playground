@@ -23,9 +23,7 @@ jobs:
           sudo systemctl enable nginx
           sudo systemctl start nginx
 
-      - name: check status of nginx
+      - name: check status of nginx and verify that the server is running
         run: |
           sudo systemctl status nginx    
-
-      - name: Verify Nginx is running
-        run: curl -I http://localhost
+          curl -I http://localhost
